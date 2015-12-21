@@ -1,4 +1,4 @@
-package com.pipipark.j.mvc.scaner;
+package com.pipipark.j.mvc.server.scaner;
 
 
 import com.pipipark.j.mvc.PPPMvcFilter;

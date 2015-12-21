@@ -7,8 +7,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.pipipark.j.mvc.PPPMvcInitializer;
-import com.pipipark.j.mvc.scaner.PPPConfigurationScaner;
-import com.pipipark.j.mvc.scaner.configuration.DispatchServletConfig;
+import com.pipipark.j.mvc.server.scaner.PPPConfigurationScaner;
+import com.pipipark.j.mvc.server.scaner.configuration.DispatchServletConfig;
 import com.pipipark.j.system.classscan.v2.PPPScanerManager;
 import com.pipipark.j.system.core.PPPLogger;
 import com.pipipark.j.system.core.PPPString;
@@ -24,7 +24,7 @@ public class ConfigInitializer extends AbstractAnnotationConfigDispatcherServlet
 	protected Class<?>[] getRootConfigClasses() {
 		PPPLogger.systemInfo("Config initializer");
 		PPPConfigurationScaner scaner = (PPPConfigurationScaner)PPPScanerManager.scaner(PPPString.lowFirst(PPPString.className(PPPConfigurationScaner.class)));
-		List<Class<?>> list = scaner.list();
+		List<Class<?>> list = scaner.types();
 		return list.toArray(new Class[0]);
 	}
 

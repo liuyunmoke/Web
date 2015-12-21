@@ -16,7 +16,8 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 
 import com.pipipark.j.mvc.PPPMvcInitializer;
-import com.pipipark.j.mvc.scaner.PPPFilterScaner;
+import com.pipipark.j.mvc.server.scaner.PPPFilterScaner;
+import com.pipipark.j.system.classscan.v2.PPPScanEntity;
 import com.pipipark.j.system.classscan.v2.PPPScanerManager;
 import com.pipipark.j.system.core.PPPCollection;
 import com.pipipark.j.system.core.PPPLogger;
@@ -26,7 +27,6 @@ import com.pipipark.j.system.core.PPPString;
 @Order(3)
 public class FilterInitializer implements WebApplicationInitializer,PPPMvcInitializer {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onStartup(ServletContext servletContext)
 			throws ServletException {
@@ -34,12 +34,12 @@ public class FilterInitializer implements WebApplicationInitializer,PPPMvcInitia
 
 		// 扫描项目中所有过滤器.
 		PPPFilterScaner scaner = (PPPFilterScaner)PPPScanerManager.scaner(PPPString.lowFirst(PPPString.className(PPPFilterScaner.class)));
-		Set<Filter> filters = (Set<Filter>)scaner.data();
+		Set<PPPScanEntity> filters = scaner.getData();
 
 		// 装载
 		if (!PPPCollection.isEmpty(filters)) {
-			for (Filter filter : filters) {
-				registerServletFilter(servletContext, filter);
+			for (PPPScanEntity filter : filters) {
+				registerServletFilter(servletContext, (Filter)filter.getTarget());
 			}
 		}
 	}

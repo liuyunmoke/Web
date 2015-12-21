@@ -6,9 +6,6 @@ import javax.annotation.Resource;
 @SuppressWarnings("serial")
 public class Register2Service extends RegisterService {
 	
-//	@Resource
-//	private RegisterService registerService;
-
 	@Override
 	public String execute(){
 		return "456";

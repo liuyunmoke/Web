@@ -1,4 +1,6 @@
-package com.pipipark.j.mvc.scaner.configuration;
+package com.pipipark.j.mvc.server.scaner.configuration;
+
+import java.util.Set;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -7,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerAdapter;
@@ -24,9 +25,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.pipipark.j.mvc.PPPMvcInitializer;
 import com.pipipark.j.mvc.PPPMvcInterceptor;
-import com.pipipark.j.mvc.scaner.PPPInterceptorScaner;
+import com.pipipark.j.mvc.server.scaner.PPPInterceptorScaner;
 import com.pipipark.j.system.annotation.PPPExclude;
 import com.pipipark.j.system.classscan.v2.PPPClassesScaner;
+import com.pipipark.j.system.classscan.v2.PPPScanEntity;
 import com.pipipark.j.system.classscan.v2.PPPScanerManager;
 import com.pipipark.j.system.core.PPPConstant;
 
@@ -34,7 +36,7 @@ import com.pipipark.j.system.core.PPPConstant;
 @PPPExclude
 @EnableWebMvc
 @ComponentScan(basePackages = PPPMvcInitializer.BASE_PACKAGE, useDefaultFilters = false, includeFilters = {  
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class,Service.class,Repository.class})  
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class})  
 })
 public class DispatchServletConfig extends WebMvcConfigurationSupport {
 
@@ -109,8 +111,9 @@ public class DispatchServletConfig extends WebMvcConfigurationSupport {
 		//搜索自定义拦截器
         registry.addInterceptor(localeChangeInterceptor());
 		PPPClassesScaner<PPPMvcInterceptor> scaner = (PPPClassesScaner<PPPMvcInterceptor>)PPPScanerManager.scaner(PPPInterceptorScaner.class);
-        for (Object interceptor : scaner.data()) {
-        	registry.addInterceptor((PPPMvcInterceptor)interceptor);
+		Set<PPPScanEntity> set = scaner.getData();
+        for (PPPScanEntity interceptor : set) {
+        	registry.addInterceptor((PPPMvcInterceptor)interceptor.getTarget());
 		}
     }
 	
