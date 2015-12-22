@@ -6,14 +6,19 @@
 		<artifactId>web</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<artifactId>AccountServer</artifactId>
+	<artifactId>Account_vMouse</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+
 
 	<dependencies>
 		<dependency>
 			<groupId>com.pipipark.j</groupId>
-			<artifactId>Account_vMouse</artifactId>
+			<artifactId>Springmvc</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.pipipark.j</groupId>
+			<artifactId>Database</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

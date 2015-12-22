@@ -2,7 +2,7 @@ package com.pipipark.j.mvc.server;
 
 import java.util.List;
 
-import com.pipipark.j.mvc.core.PPPContext;
+import com.pipipark.j.mvc.core.PPPSpring;
 import com.pipipark.j.mvc.server.scaner.PPPServiceScaner;
 import com.pipipark.j.system.annotation.PPPIndex;
 import com.pipipark.j.system.classscan.v2.PPPScanerManager;
@@ -20,7 +20,7 @@ public class ServerServiceRegisterPostProcessor implements PPPServerPostProcesso
 		List<Class<?>> set = scaner.types();
 		for (Class<?> bean : set) {
 			PPPLogger.info("register service: "+bean.getName()+" ["+bean.hashCode()+"]");
-			PPPContext.Spring.addBean(bean);
+			PPPSpring.addBean(bean);
 		}
 	}
 }

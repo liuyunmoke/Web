@@ -1,4 +1,4 @@
-package com.pipipark.j.mvc.server.init;
+package com.pipipark.j.mvc.server.initializer;
 
 import java.util.EventListener;
 import java.util.Set;

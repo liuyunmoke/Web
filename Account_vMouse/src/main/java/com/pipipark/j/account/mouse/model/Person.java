@@ -1,6 +1,6 @@
-package com.pipipark.j.account.model;
+package com.pipipark.j.account.mouse.model;
 
-import com.pipipark.j.account.db.MyDB;
+import com.pipipark.j.account.mouse.db.MyDB;
 import com.pipipark.j.database.PPPModel;
 import com.pipipark.j.database.annotation.Db;
 import com.pipipark.j.database.annotation.PrimaryKey;

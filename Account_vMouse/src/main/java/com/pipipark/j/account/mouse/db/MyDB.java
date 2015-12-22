@@ -1,4 +1,4 @@
-package com.pipipark.j.account.db;
+package com.pipipark.j.account.mouse.db;
 
 import java.util.List;
 

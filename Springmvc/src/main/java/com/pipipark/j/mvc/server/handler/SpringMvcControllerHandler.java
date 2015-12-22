@@ -1,4 +1,4 @@
-package com.pipipark.j.mvc.server;
+package com.pipipark.j.mvc.server.handler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pipipark.j.mvc.PPPMvcController;
-import com.pipipark.j.mvc.core.PPPContext;
+import com.pipipark.j.mvc.core.PPPSpring;
 import com.pipipark.j.system.entity.PPPEntity;
 
 
@@ -22,15 +22,14 @@ import com.pipipark.j.system.entity.PPPEntity;
  */
 @SuppressWarnings("serial")
 @RestController("SpringMvcController")
-public class SpringMvcController extends PPPEntity implements PPPMvcController {
+public class SpringMvcControllerHandler extends PPPEntity implements PPPMvcController {
 	
 	@Autowired
 	private SpringMvcServiceHandler springMvcServiceHandler;
 	
-	@RequestMapping("/{service}/{ver}")
+	@RequestMapping({"/{service}", "/{service}/{ver}"})
 	public String access(@PathVariable("service") String serviceName, @PathVariable("ver") Integer ver, HttpServletRequest request, HttpServletResponse response){
-		springMvcServiceHandler.access(serviceName, ver, request, response);
-		return null;
+		return springMvcServiceHandler.access(serviceName, ver==null?1:ver, request, response);
 	}
 
 	@Override

@@ -186,5 +186,6 @@
 	<modules>
 		<module>AccountServer</module>
 		<module>Springmvc</module>
+		<module>Account_vMouse</module>
 	</modules>
 </project>
