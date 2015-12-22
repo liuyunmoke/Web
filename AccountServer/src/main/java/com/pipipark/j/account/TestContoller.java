@@ -20,9 +20,6 @@ public class TestContoller {
 	
 	@RequestMapping("/test")
 	public void test(){
-		LoginService l1= (LoginService)PPPContext.Spring.getBean("loginService");
-		System.out.println(l1);
-		RegisterService s1 = (RegisterService)PPPContext.Spring.getBean("registerService");
-		System.out.println(s1);
+		loginService.execute();
 	}
 }

@@ -1,5 +1,6 @@
 package com.pipipark.j.mvc.server;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,21 +16,21 @@ import com.pipipark.j.system.entity.PPPEntity;
 
 
 /***
- * 版本控制器,
+ * 默认控制器,
  * 处理所有http外部请求.
  * 格式: 
  * @author pipipark:cwj
  */
 @SuppressWarnings("serial")
-@RestController("SpringMvcController")
-public class SpringMvcController extends PPPEntity implements PPPMvcController {
+@RestController("SpringMvcDefaultController")
+public class SpringMvcDefaultController extends PPPEntity implements PPPMvcController {
 	
 	@Autowired
 	private SpringMvcServiceHandler springMvcServiceHandler;
 	
-	@RequestMapping("/{service}/{ver}")
-	public String access(@PathVariable("service") String serviceName, @PathVariable("ver") Integer ver, HttpServletRequest request, HttpServletResponse response){
-		springMvcServiceHandler.access(serviceName, ver, request, response);
+	@RequestMapping("/{service}")
+	public String access(@PathVariable("service") String serviceName, HttpServletRequest request, HttpServletResponse response){
+		springMvcServiceHandler.access(serviceName, 1, request, response);
 		return null;
 	}
 

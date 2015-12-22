@@ -35,9 +35,7 @@ import com.pipipark.j.system.core.PPPConstant;
 @Configuration
 @PPPExclude
 @EnableWebMvc
-@ComponentScan(basePackages = PPPMvcInitializer.BASE_PACKAGE, useDefaultFilters = false, includeFilters = {  
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class})  
-})
+@ComponentScan(basePackages = PPPMvcInitializer.BASE_PACKAGE)
 public class DispatchServletConfig extends WebMvcConfigurationSupport {
 
 	/**
@@ -47,7 +45,7 @@ public class DispatchServletConfig extends WebMvcConfigurationSupport {
 	@Bean 
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF");
+        viewResolver.setPrefix("/WEB-INF/");
         viewResolver.setSuffix(".html");
         return viewResolver;
     }
