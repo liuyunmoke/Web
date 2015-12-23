@@ -1,4 +1,4 @@
-package com.pipipark.j.mvc.server.scaner.filter;
+package com.pipipark.j.mvc.server.filter;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 

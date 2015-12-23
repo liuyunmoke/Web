@@ -1,9 +1,11 @@
-package com.pipipark.j.mvc.server;
+package com.pipipark.j.mvc.server.processor;
 
 import java.util.Set;
 
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.web.context.ServletContextAware;
 
 import com.pipipark.j.mvc.PPPMvcPostProcessor;
 import com.pipipark.j.mvc.server.scaner.PPPPostProcessorScaner;
@@ -12,15 +14,11 @@ import com.pipipark.j.system.classscan.v2.PPPScanerManager;
 import com.pipipark.j.system.core.PPPLogger;
 import com.pipipark.j.system.core.PPPString;
 
-
-public class PPPBeanPostProcessor implements ApplicationListener<ContextRefreshedEvent> {
+public class BeanAfterInitProcessor implements InitializingBean,ServletContextAware {
 
 	@Override
-	public void onApplicationEvent(ContextRefreshedEvent event) {
-		//root application context.
-		if(event.getApplicationContext().getParent() == null){
-			PPPLogger.systemInfo("SpringBean initializer end and Post processor start");
-			//server post
+	public void afterPropertiesSet() throws Exception {
+		if(BeanBeforeInitProcessor.state()){
 			PPPServerPostProcessorScaner serverScaner = (PPPServerPostProcessorScaner)PPPScanerManager.scaner(PPPString.lowFirst(PPPString.className(PPPServerPostProcessorScaner.class)));
 			Set<PPPScanEntity> serverSet = serverScaner.getData();
 			for (PPPScanEntity serverPost : serverSet) {
@@ -39,6 +37,11 @@ public class PPPBeanPostProcessor implements ApplicationListener<ContextRefreshe
 			}
 			PPPLogger.systemInfo("Post processor end");
 		}
+	}
+
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		
 	}
 
 }

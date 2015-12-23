@@ -1,4 +1,4 @@
-package com.pipipark.j.mvc.server.scaner.configuration;
+package com.pipipark.j.mvc.server.configuration;
 
 import java.util.Set;
 
@@ -50,16 +50,16 @@ public class DispatchServletConfig extends WebMvcConfigurationSupport {
         return viewResolver;
     }
 	
-	/**
-	 * 国际化资源文件
-	 * @return ResourceBundleMessageSource
-	 */
-	@Bean  
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();  
-        messageSource.setBasename("messages");  
-        return messageSource;  
-    }
+//	/**
+//	 * 国际化资源文件
+//	 * @return ResourceBundleMessageSource
+//	 */
+//	@Bean  
+//    public MessageSource messageSource() {
+//        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();  
+//        messageSource.setBasename("messages");  
+//        return messageSource;  
+//    }
 	
 	/**
 	 * 上传文件,

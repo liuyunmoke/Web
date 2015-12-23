@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pipipark.j.mvc.PPPMvcController;
 import com.pipipark.j.mvc.core.PPPSpring;
+import com.pipipark.j.system.core.PPPString;
 import com.pipipark.j.system.entity.PPPEntity;
 
 
@@ -21,15 +22,22 @@ import com.pipipark.j.system.entity.PPPEntity;
  * @author pipipark:cwj
  */
 @SuppressWarnings("serial")
-@RestController("SpringMvcController")
+@RestController("SpringMvcControllerHandler")
 public class SpringMvcControllerHandler extends PPPEntity implements PPPMvcController {
 	
 	@Autowired
 	private SpringMvcServiceHandler springMvcServiceHandler;
 	
-	@RequestMapping({"/{service}", "/{service}/{ver}"})
-	public String access(@PathVariable("service") String serviceName, @PathVariable("ver") Integer ver, HttpServletRequest request, HttpServletResponse response){
-		return springMvcServiceHandler.access(serviceName, ver==null?1:ver, request, response);
+	@RequestMapping("/access:{service}/**")
+	public String access(@PathVariable("service") String service, HttpServletRequest request, HttpServletResponse response){
+		String path = request.getServletPath();
+		String[] pathParam = PPPString.split(path, "/");	
+		
+		for (String param : pathParam) {
+			System.out.println(param);
+		}
+//		return springMvcServiceHandler.access(serviceName, ver==null?1:ver, request, response);
+		return "";
 	}
 
 	@Override

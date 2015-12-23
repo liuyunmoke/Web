@@ -2,14 +2,16 @@ package com.pipipark.j.account.mouse.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.pipipark.j.account.mouse.db.MyDB;
 import com.pipipark.j.database.exception.PPPSqlException;
 import com.pipipark.j.database.tool.PPPRecord;
 import com.pipipark.j.mvc.PPPMvcService;
 import com.pipipark.j.system.exception.PPPServiceException;
 
-@SuppressWarnings("serial")
-public class LoginService implements PPPMvcService {
+@Service
+public class LoginService {
 	
 	public String execute(){
 		MyDB db = new MyDB();

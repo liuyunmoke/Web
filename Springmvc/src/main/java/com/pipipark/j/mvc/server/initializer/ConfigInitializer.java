@@ -7,8 +7,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.pipipark.j.mvc.PPPMvcInitializer;
+import com.pipipark.j.mvc.server.configuration.DispatchServletConfig;
 import com.pipipark.j.mvc.server.scaner.PPPConfigurationScaner;
-import com.pipipark.j.mvc.server.scaner.configuration.DispatchServletConfig;
 import com.pipipark.j.system.classscan.v2.PPPScanerManager;
 import com.pipipark.j.system.core.PPPLogger;
 import com.pipipark.j.system.core.PPPString;

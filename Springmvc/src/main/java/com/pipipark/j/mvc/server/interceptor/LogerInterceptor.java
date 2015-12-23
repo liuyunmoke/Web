@@ -1,4 +1,4 @@
-package com.pipipark.j.mvc.server.scaner.interceptor;
+package com.pipipark.j.mvc.server.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

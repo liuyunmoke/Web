@@ -1,9 +1,10 @@
 package com.pipipark.j.account.mouse.service;
 
-import com.pipipark.j.mvc.PPPMvcService;
+import org.springframework.stereotype.Service;
 
-@SuppressWarnings("serial")
-public class LogoutService implements PPPMvcService {
+
+@Service
+public class LogoutService {
 	
 	public String execute(){
 		return "1121111";
