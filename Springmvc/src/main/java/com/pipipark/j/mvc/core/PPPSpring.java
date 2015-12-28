@@ -1,9 +1,5 @@
 package com.pipipark.j.mvc.core;
 
-import java.lang.reflect.Field;
-
-import javax.annotation.Resource;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -122,6 +118,17 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 	 */
 	public static void addBean(Class<?> beanClass) {
 		String name = PPPString.aliasName(beanClass);
+		if (!_applicationContext.containsBean(name)) {
+			BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder
+					.genericBeanDefinition(beanClass);
+			ConfigurableApplicationContext configurableApplicationContext = (ConfigurableApplicationContext) _applicationContext;
+			BeanDefinitionRegistry beanDefinitonRegistry = (BeanDefinitionRegistry) configurableApplicationContext
+					.getBeanFactory();
+			beanDefinitonRegistry.registerBeanDefinition(name,
+					beanDefinitionBuilder.getRawBeanDefinition());
+		}
+	}
+	public static void addBean(String name, Class<?> beanClass) {
 		if (!_applicationContext.containsBean(name)) {
 			BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder
 					.genericBeanDefinition(beanClass);
