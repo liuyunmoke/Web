@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.pipipark.j.account.mouse.db.MyDB;
+import com.pipipark.j.account.mouse.db.MyMysqlDB;
+import com.pipipark.j.account.mouse.db.MySqliteDB;
 import com.pipipark.j.database.exception.PPPSqlException;
 import com.pipipark.j.database.tool.PPPRecord;
 import com.pipipark.j.mvc.PPPMvcService;
@@ -14,7 +15,7 @@ import com.pipipark.j.system.exception.PPPServiceException;
 public class LoginService {
 	
 	public String execute(){
-		MyDB db = new MyDB();
+		MySqliteDB db = new MySqliteDB();
 		try {
 			db.open();
 			db.executeUpdate("insert into persons ('num',name) values (4,'alalei3')");
@@ -23,6 +24,29 @@ public class LoginService {
 			for (PPPRecord person : list) {
 				System.out.println(person.get("id"));
 			}
+		} catch (PPPServiceException e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				db.close();
+			} catch (PPPSqlException e) {
+				e.printStackTrace();
+			}
+		}
+		return "234";
+	}
+	
+	public String execute2(){
+		MyMysqlDB db = new MyMysqlDB();
+		try {
+			db.open();
+			db.executeUpdate("insert into persons (num,name) values (4,'alalei3')");
+			List<PPPRecord> list = db.executeQuery("select * from persons");
+			System.out.println("result:");
+			for (PPPRecord person : list) {
+				System.out.println(person.get("id"));
+			}
+			db.commit();
 		} catch (PPPServiceException e) {
 			e.printStackTrace();
 		} finally{

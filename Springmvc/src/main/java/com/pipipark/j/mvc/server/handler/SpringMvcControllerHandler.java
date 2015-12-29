@@ -28,7 +28,7 @@ public class SpringMvcControllerHandler extends PPPEntity implements PPPMvcContr
 	@Autowired
 	private SpringMvcServiceHandler springMvcServiceHandler;
 	
-	@RequestMapping("/access:{service}/**")
+	@RequestMapping("/{service}/**")
 	public String access(@PathVariable("service") String service, HttpServletRequest request, HttpServletResponse response){
 		String path = request.getServletPath();
 		String[] pathParam = PPPString.split(path, "/");	

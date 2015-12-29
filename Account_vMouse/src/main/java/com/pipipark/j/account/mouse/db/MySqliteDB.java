@@ -7,7 +7,7 @@ import com.pipipark.j.database.exception.PPPSqlException;
 import com.pipipark.j.database.tool.PPPRecord;
 import com.pipipark.j.system.exception.PPPServiceException;
 
-public class MyDB extends SqliteDB {
+public class MySqliteDB extends SqliteDB {
 
 	private static final long serialVersionUID = -4787359241780081214L;
 
@@ -27,7 +27,7 @@ public class MyDB extends SqliteDB {
 	}
 
 	public static void main(String[] args){
-		MyDB db = new MyDB();
+		MySqliteDB db = new MySqliteDB();
 		try {
 			db.open();
 //			db.executeUpdate("insert into persons ('num',name) values (2,'alalei')");

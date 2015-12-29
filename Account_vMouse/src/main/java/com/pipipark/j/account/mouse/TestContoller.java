@@ -19,13 +19,13 @@ public class TestContoller {
 //	@Resource
 //	private LogoutService logoutService;
 //	
-//	@Resource
-//	private LoginService loginService;
+	@Resource
+	private LoginService loginService;
 	
 	@RequestMapping("/test")
 	public void test(){
-		Object bean = PPPSpring.getBean("registerService");
-		System.out.println(bean);
-//		loginService.execute();
+//		Object bean = PPPSpring.getBean("registerService");
+//		System.out.println(bean);
+		loginService.execute2();
 	}
 }
