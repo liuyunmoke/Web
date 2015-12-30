@@ -1,20 +1,19 @@
-package com.pipipark.j.account.mouse.model;
+package com.pipipark.j.account.mouse.entity;
 
 import com.pipipark.j.account.mouse.db.MyMysqlDB;
-import com.pipipark.j.account.mouse.db.MySqliteDB;
 import com.pipipark.j.database.PPPModel;
 import com.pipipark.j.database.annotation.Db;
 import com.pipipark.j.database.annotation.PrimaryKey;
 
 @Db(MyMysqlDB.class)
-public class Person extends PPPModel {
+public class Persons extends PPPModel {
 
 	private static final long serialVersionUID = -3531909629428947002L;
 
 	@PrimaryKey
 	private Integer id;
 	private String name;
-	private Integer sex;
+	private Integer num;
 	
 	
 	public Integer getId() {
@@ -29,11 +28,11 @@ public class Person extends PPPModel {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getSex() {
-		return sex;
+	public Integer getNum() {
+		return num;
 	}
-	public void setSex(Integer sex) {
-		this.sex = sex;
+	public void setNum(Integer num) {
+		this.num = num;
 	}
 	
 }

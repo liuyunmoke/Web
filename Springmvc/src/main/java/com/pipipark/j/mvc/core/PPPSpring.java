@@ -139,4 +139,19 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 					beanDefinitionBuilder.getRawBeanDefinition());
 		}
 	}
+	
+	public static void addService(Class<?> beanClass){
+		String name = PPPString.aliasName(beanClass);
+		addBean(PPPString.md5(name), beanClass);
+	}
+	public static void addService(String name, Class<?> beanClass){
+		addBean(PPPString.md5(name), beanClass);
+	}
+	public static Object getService(String name){
+		return getBean(PPPString.md5(name));
+	}
+	public static <M> M getService(String name, Class<M> requiredType){
+		return getBean(PPPString.md5(name), requiredType);
+	}
+	
 }

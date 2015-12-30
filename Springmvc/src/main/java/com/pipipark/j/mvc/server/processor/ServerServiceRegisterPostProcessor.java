@@ -21,7 +21,7 @@ public class ServerServiceRegisterPostProcessor implements PPPServerPostProcesso
 		List<PPPScanEntity> set = scaner.list();
 		for (PPPScanEntity entity : set) {
 			PPPLogger.info("register service: "+entity.getType().getName()+" ["+entity.getName()+"]");
-			PPPSpring.addBean(entity.getName(), entity.getType());
+			PPPSpring.addBean(PPPString.md5(entity.getName()), entity.getType());
 		}
 	}
 }
