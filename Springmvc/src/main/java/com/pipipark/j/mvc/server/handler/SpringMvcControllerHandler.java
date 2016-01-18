@@ -37,7 +37,6 @@ public class SpringMvcControllerHandler extends PPPEntity implements PPPMvcContr
 		String[] serviceNameTemp = PPPString.split(serviceName, ".");
 		String service;
 		String version;
-		PPPAssert.
 		if(serviceNameTemp.length==1){
 			service = serviceNameTemp[0];
 		}

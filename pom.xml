@@ -187,5 +187,7 @@
 		<module>AccountServer</module>
 		<module>Springmvc</module>
 		<module>Account_vMouse</module>
+		<module>Red5Server</module>
+		<module>Red5_vMouse</module>
 	</modules>
 </project>
