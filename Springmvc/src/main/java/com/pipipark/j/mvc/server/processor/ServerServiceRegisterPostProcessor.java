@@ -11,6 +11,11 @@ import com.pipipark.j.system.core.PPPConstant;
 import com.pipipark.j.system.core.PPPLogger;
 import com.pipipark.j.system.core.PPPString;
 
+/***
+ * 服务注册处理器,
+ * 载入并注册为SpringBean.
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 @PPPIndex(PPPConstant.Indexs.HIGHEST_INDEX)
 public class ServerServiceRegisterPostProcessor implements PPPServerPostProcessor {

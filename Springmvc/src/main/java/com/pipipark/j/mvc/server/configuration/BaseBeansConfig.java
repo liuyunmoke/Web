@@ -7,7 +7,10 @@ import com.pipipark.j.mvc.core.PPPSpring;
 import com.pipipark.j.mvc.server.processor.BeanAfterInitProcessor;
 import com.pipipark.j.mvc.server.processor.BeanBeforeInitProcessor;
 
-
+/***
+ * Bean注入配置.
+ * @author pipipark:cwj
+ */
 @Configuration
 public class BaseBeansConfig {
 	

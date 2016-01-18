@@ -1,6 +1,5 @@
 package com.pipipark.j.mvc.server.initializer;
 
-
 import java.util.List;
 
 import org.springframework.core.annotation.Order;
@@ -13,6 +12,12 @@ import com.pipipark.j.system.classscan.v2.PPPScanerManager;
 import com.pipipark.j.system.core.PPPLogger;
 import com.pipipark.j.system.core.PPPString;
 
+
+/***
+ * 全局配置初始化,
+ * 启动顺位: No.2 .
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 @Order(2)
 public class ConfigInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements PPPMvcInitializer {

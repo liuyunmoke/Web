@@ -11,6 +11,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 import com.pipipark.j.system.IPPPark;
 import com.pipipark.j.system.core.PPPString;
 
+
+/***
+ * Spring框架工具类.
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 public class PPPSpring implements ApplicationContextAware,IPPPark {
 	

@@ -4,23 +4,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pipipark.j.mvc.PPPMvcController;
-import com.pipipark.j.mvc.core.PPPSpring;
-import com.pipipark.j.system.core.PPPAssert;
 import com.pipipark.j.system.core.PPPString;
 import com.pipipark.j.system.entity.PPPEntity;
-
 
 
 /***
  * 版本控制器,
  * 处理所有http外部请求.
- * 格式: 
  * @author pipipark:cwj
  */
 @SuppressWarnings("serial")
@@ -30,6 +25,7 @@ public class SpringMvcControllerHandler extends PPPEntity implements PPPMvcContr
 	@Autowired
 	private SpringMvcServiceHandler springMvcServiceHandler;
 	
+	@SuppressWarnings("unused")
 	@RequestMapping("/service/{name}")
 	public String service(@PathVariable("name") String serviceName, HttpServletRequest request, HttpServletResponse response){
 		response.setContentType("application/json;charset=utf-8");

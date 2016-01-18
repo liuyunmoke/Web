@@ -9,7 +9,10 @@ import com.pipipark.j.mvc.PPPMvcInterceptor;
 import com.pipipark.j.system.annotation.PPPIndex;
 import com.pipipark.j.system.core.PPPLogger;
 
-
+/***
+ * 默认日志拦截器.
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 @PPPIndex(50)
 public class LogerInterceptor implements PPPMvcInterceptor {

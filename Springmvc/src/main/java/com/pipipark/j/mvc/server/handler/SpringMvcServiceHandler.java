@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import com.pipipark.j.system.IPPPark;
 import com.pipipark.j.system.entity.PPPEntity;
 
+/***
+ * 服务功能过滤器,
+ * 服务的检查分发.
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 @Service("SpringMvcServiceHandler")
 public class SpringMvcServiceHandler extends PPPEntity implements IPPPark {

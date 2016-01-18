@@ -23,6 +23,11 @@ import com.pipipark.j.system.core.PPPCollection;
 import com.pipipark.j.system.core.PPPLogger;
 import com.pipipark.j.system.core.PPPString;
 
+/***
+ * 全局过滤器初始化,
+ * 启动顺位: No.3 .
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 @Order(3)
 public class FilterInitializer implements WebApplicationInitializer,PPPMvcInitializer {

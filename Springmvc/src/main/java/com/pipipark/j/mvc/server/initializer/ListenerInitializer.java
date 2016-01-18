@@ -16,6 +16,12 @@ import com.pipipark.j.system.classscan.v2.PPPScanerManager;
 import com.pipipark.j.system.core.PPPLogger;
 import com.pipipark.j.system.core.PPPString;
 
+
+/***
+ * 全局监听器初始化,
+ * 启动顺位: No.4 .
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 @Order(4)
 public class ListenerInitializer implements WebApplicationInitializer,PPPMvcInitializer {

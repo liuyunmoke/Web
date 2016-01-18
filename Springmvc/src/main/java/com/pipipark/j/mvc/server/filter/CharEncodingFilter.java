@@ -7,6 +7,10 @@ import com.pipipark.j.system.annotation.PPPIndex;
 import com.pipipark.j.system.classscan.v2.PPPInitMethod;
 import com.pipipark.j.system.core.PPPConstant;
 
+/***
+ * 字符集过滤器.
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 @PPPIndex(PPPConstant.Indexs.HIGHEST_INDEX)
 public class CharEncodingFilter extends CharacterEncodingFilter implements

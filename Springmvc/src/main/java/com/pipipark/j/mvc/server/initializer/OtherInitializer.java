@@ -9,6 +9,12 @@ import org.springframework.web.WebApplicationInitializer;
 import com.pipipark.j.mvc.PPPMvcInitializer;
 import com.pipipark.j.system.core.PPPLogger;
 
+
+/***
+ * 其他功能初始化,
+ * 启动顺位: No.10 .
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 @Order(10)
 public class OtherInitializer implements WebApplicationInitializer,PPPMvcInitializer {

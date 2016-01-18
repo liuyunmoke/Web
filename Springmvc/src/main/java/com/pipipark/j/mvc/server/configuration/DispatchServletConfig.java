@@ -2,14 +2,9 @@ package com.pipipark.j.mvc.server.configuration;
 
 import java.util.Set;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.HandlerMapping;
@@ -32,6 +27,10 @@ import com.pipipark.j.system.classscan.v2.PPPScanEntity;
 import com.pipipark.j.system.classscan.v2.PPPScanerManager;
 import com.pipipark.j.system.core.PPPConstant;
 
+/***
+ * SpringMVC配置.
+ * @author pipipark:cwj
+ */
 @Configuration
 @PPPExclude
 @EnableWebMvc

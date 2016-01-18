@@ -14,6 +14,11 @@ import com.pipipark.j.system.classscan.v2.PPPScanerManager;
 import com.pipipark.j.system.core.PPPLogger;
 import com.pipipark.j.system.core.PPPString;
 
+/***
+ * Bean加载(已加载入内存)处理器.
+ * @author Administrator
+ *
+ */
 public class BeanAfterInitProcessor implements InitializingBean,ServletContextAware {
 
 	@Override

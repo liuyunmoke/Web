@@ -10,6 +10,11 @@ import com.pipipark.j.mvc.PPPMvcInitializer;
 import com.pipipark.j.system.classscan.v2.PPPScan;
 import com.pipipark.j.system.core.PPPLogger;
 
+/***
+ * 扫描加载初始化,
+ * 启动顺位: No.1 .
+ * @author pipipark:cwj
+ */
 @SuppressWarnings("serial")
 @Order(1)
 public class StartedInitializer implements WebApplicationInitializer,PPPMvcInitializer {
