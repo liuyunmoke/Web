@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pipipark.j.mvc.PPPMvcController;
 import com.pipipark.j.system.core.PPPString;
+import com.pipipark.j.system.core.PPPVersion;
 import com.pipipark.j.system.entity.PPPEntity;
 
 
 /***
  * 版本控制器,
- * 处理所有http外部请求.
+ * 处理所有http请求.
  * @author pipipark:cwj
  */
 @SuppressWarnings("serial")
@@ -31,11 +32,18 @@ public class SpringMvcControllerHandler extends PPPEntity implements PPPMvcContr
 		response.setContentType("application/json;charset=utf-8");
 		response.setHeader("Cache-Control", "no-cache");
 		String[] serviceNameTemp = PPPString.split(serviceName, ".");
-		String service;
-		String version;
-		if(serviceNameTemp.length==1){
-			service = serviceNameTemp[0];
+		String service = null;
+		PPPVersion version = null;
+		//断言serviceNameTemp是否空.
+		
+		//断言serviceNameTemp[0]是否空.
+		
+		try{
+			version = PPPVersion.get(serviceNameTemp[1]);
+		}catch(ArrayIndexOutOfBoundsException e){
+			version = PPPVersion.Rat;
 		}
+		
 //		return springMvcServiceHandler.access(serviceName, ver==null?1:ver, request, response);
 		return "";
 	}

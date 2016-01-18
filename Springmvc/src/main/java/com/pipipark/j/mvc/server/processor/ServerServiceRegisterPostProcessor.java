@@ -1,8 +1,12 @@
 package com.pipipark.j.mvc.server.processor;
 
+import java.lang.reflect.Method;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.pipipark.j.mvc.core.PPPSpring;
+import com.pipipark.j.mvc.server.exception.PPPServiceExecuteMethodRepeatException;
 import com.pipipark.j.mvc.server.scaner.PPPServiceScaner;
 import com.pipipark.j.system.annotation.PPPIndex;
 import com.pipipark.j.system.classscan.v2.PPPScanEntity;
@@ -19,14 +23,24 @@ import com.pipipark.j.system.core.PPPString;
 @SuppressWarnings("serial")
 @PPPIndex(PPPConstant.Indexs.HIGHEST_INDEX)
 public class ServerServiceRegisterPostProcessor implements PPPServerPostProcessor {
+	
+	public static final String EXECUTE_METHOD="execute";
 
 	@Override
 	public void handler() {
 		PPPServiceScaner scaner = (PPPServiceScaner)PPPScanerManager.scaner(PPPString.lowFirst(PPPString.className(PPPServiceScaner.class)));
-		List<PPPScanEntity> set = scaner.list();
-		for (PPPScanEntity entity : set) {
-			PPPLogger.info("register service: "+entity.getType().getName()+" ["+entity.getName()+"]");
-			PPPSpring.addBean(PPPString.md5(entity.getName()), entity.getType());
+		List<PPPScanEntity> list = scaner.list();
+		for (PPPScanEntity entity : list) {
+			Class<?> clazz = entity.getType();
+			PPPLogger.info("register service: "+clazz.getName()+" ["+entity.getName()+"]");
+			Method[] ms = clazz.getDeclaredMethods();
+			Set<String> set = new LinkedHashSet<String>();
+			for (Method method : ms) {
+				if(EXECUTE_METHOD.equals(method.getName()) && !set.add(method.getName())){
+					throw new PPPServiceExecuteMethodRepeatException();
+				}
+			}
+			PPPSpring.addBean(PPPString.md5(entity.getName()), clazz);
 		}
 	}
 }
