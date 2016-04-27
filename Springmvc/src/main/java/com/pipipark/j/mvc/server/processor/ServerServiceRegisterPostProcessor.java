@@ -5,7 +5,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.pipipark.j.mvc.core.PPPSpring;
+import com.pipipark.j.mvc.PPPServerPostProcessor;
+import com.pipipark.j.mvc.core.PPPSpringContext;
+import com.pipipark.j.mvc.core.PPPSpringmvcConstant;
 import com.pipipark.j.mvc.server.exception.PPPServiceExecuteMethodRepeatException;
 import com.pipipark.j.mvc.server.scaner.PPPServiceScaner;
 import com.pipipark.j.system.annotation.PPPIndex;
@@ -24,8 +26,6 @@ import com.pipipark.j.system.core.PPPString;
 @PPPIndex(PPPConstant.Indexs.HIGHEST_INDEX)
 public class ServerServiceRegisterPostProcessor implements PPPServerPostProcessor {
 	
-	public static final String EXECUTE_METHOD="execute";
-
 	@Override
 	public void handler() {
 		PPPServiceScaner scaner = (PPPServiceScaner)PPPScanerManager.scaner(PPPString.lowFirst(PPPString.className(PPPServiceScaner.class)));
@@ -36,11 +36,11 @@ public class ServerServiceRegisterPostProcessor implements PPPServerPostProcesso
 			Method[] ms = clazz.getDeclaredMethods();
 			Set<String> set = new LinkedHashSet<String>();
 			for (Method method : ms) {
-				if(EXECUTE_METHOD.equals(method.getName()) && !set.add(method.getName())){
+				if(PPPSpringmvcConstant.EXECUTE_METHOD.equals(method.getName()) && !set.add(method.getName())){
 					throw new PPPServiceExecuteMethodRepeatException();
 				}
 			}
-			PPPSpring.addBean(PPPString.md5(entity.getName()), clazz);
+			PPPSpringContext.addBean(entity.getName(), clazz);
 		}
 	}
 }

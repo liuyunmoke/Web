@@ -17,7 +17,7 @@ import com.pipipark.j.system.core.PPPString;
  * @author pipipark:cwj
  */
 @SuppressWarnings("serial")
-public class PPPSpring implements ApplicationContextAware,IPPPark {
+public class PPPSpringContext implements ApplicationContextAware,IPPPark {
 	
 	private static ApplicationContext _applicationContext;
 	/**
@@ -46,11 +46,16 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 	 * @throws BeansException
 	 */
 	public static Object getBean(String name){
+		Object bean;
 		try{
-			return _applicationContext.getBean(name);
+			bean = _applicationContext.getBean(name);
+			if(bean==null){
+				bean = _applicationContext.getBean(PPPString.md5(name));
+			}
 		}catch(BeansException e){
-			return null;
+			bean = _applicationContext.getBean(PPPString.md5(name));
 		}
+		return bean;
 	}
 
 	/**
@@ -65,11 +70,16 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 	 * @throws BeansException
 	 */
 	public static <M> M getBean(String name, Class<M> requiredType){
+		M bean;
 		try{
-			return _applicationContext.getBean(name, requiredType);
+			bean = _applicationContext.getBean(name, requiredType);
+			if(bean==null){
+				bean = _applicationContext.getBean(PPPString.md5(name), requiredType);
+			}
 		}catch(BeansException e){
-			return null;
+			bean = _applicationContext.getBean(PPPString.md5(name), requiredType);
 		}
+		return bean;
 	}
 
 	/**
@@ -79,7 +89,11 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 	 * @return boolean
 	 */
 	public static boolean containsBean(String name) {
-		return _applicationContext.containsBean(name);
+		boolean bool = _applicationContext.containsBean(name);
+		if(!bool){
+			bool = _applicationContext.containsBean(PPPString.md5(name));
+		}
+		return bool;
 	}
 
 	/**
@@ -92,7 +106,13 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 	 */
 	public static boolean isSingleton(String name)
 			throws NoSuchBeanDefinitionException {
-		return _applicationContext.isSingleton(name);
+		boolean bool;
+		try{
+			bool = _applicationContext.isSingleton(name);
+		}catch(NoSuchBeanDefinitionException e){
+			bool = _applicationContext.isSingleton(PPPString.md5(name));
+		}
+		return bool;
 	}
 
 	/**
@@ -102,7 +122,11 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 	 */
 	public static Class<?> getType(String name)
 			throws NoSuchBeanDefinitionException {
-		return _applicationContext.getType(name);
+		Class<?> clazz = _applicationContext.getType(name);
+		if(clazz==null){
+			return _applicationContext.getType(PPPString.md5(name));
+		}
+		return clazz;
 	}
 
 	/**
@@ -114,7 +138,11 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 	 */
 	public static String[] getAliases(String name)
 			throws NoSuchBeanDefinitionException {
-		return _applicationContext.getAliases(name);
+		String[] temp = _applicationContext.getAliases(name);
+		if(temp==null||temp.length==0){
+			return _applicationContext.getAliases(PPPString.md5(name));
+		}
+		return temp;
 	}
 
 	/**
@@ -122,7 +150,7 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 	 * @param service
 	 */
 	public static void addBean(Class<?> beanClass) {
-		String name = PPPString.aliasName(beanClass);
+		String name = PPPString.md5(PPPString.aliasName(beanClass));
 		if (!_applicationContext.containsBean(name)) {
 			BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder
 					.genericBeanDefinition(beanClass);
@@ -134,6 +162,7 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 		}
 	}
 	public static void addBean(String name, Class<?> beanClass) {
+		name = PPPString.md5(name);
 		if (!_applicationContext.containsBean(name)) {
 			BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder
 					.genericBeanDefinition(beanClass);
@@ -147,16 +176,16 @@ public class PPPSpring implements ApplicationContextAware,IPPPark {
 	
 	public static void addService(Class<?> beanClass){
 		String name = PPPString.aliasName(beanClass);
-		addBean(PPPString.md5(name), beanClass);
+		addBean(name, beanClass);
 	}
 	public static void addService(String name, Class<?> beanClass){
-		addBean(PPPString.md5(name), beanClass);
+		addBean(name, beanClass);
 	}
 	public static Object getService(String name){
-		return getBean(PPPString.md5(name));
+		return getBean(name);
 	}
 	public static <M> M getService(String name, Class<M> requiredType){
-		return getBean(PPPString.md5(name), requiredType);
+		return getBean(name, requiredType);
 	}
 	
 }

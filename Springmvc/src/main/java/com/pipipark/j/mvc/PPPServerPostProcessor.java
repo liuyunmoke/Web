@@ -1,4 +1,4 @@
-package com.pipipark.j.mvc.server.processor;
+package com.pipipark.j.mvc;
 
 import com.pipipark.j.system.IPPPark;
 
@@ -6,7 +6,7 @@ import com.pipipark.j.system.IPPPark;
  * 启动完成处理器接口.
  * @author pipipark:cwj
  */
-interface PPPServerPostProcessor extends IPPPark {
+public interface PPPServerPostProcessor extends IPPPark {
 
 	void handler();
 }
