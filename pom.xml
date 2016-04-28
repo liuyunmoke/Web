@@ -189,7 +189,7 @@
 		<module>Account_vMouse</module>
 		<module>Red5Server</module>
 		<module>Red5_vMouse</module>
-		<module>FlowPlatform</module>
-		<module>FlowPlatformContext</module>
+		<module>NetworkFlowPlatformServer</module>
+		<module>NetworkFlowPlatform</module>
 	</modules>
 </project>

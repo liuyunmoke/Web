@@ -42,3 +42,4 @@ node_modules
 *.classpath
 /target/
 /**/target/
+/bin/
