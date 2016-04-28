@@ -5,6 +5,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
 import com.pipipark.j.mvc.PPPServerPostProcessor;
 import com.pipipark.j.mvc.core.PPPContext;
 import com.pipipark.j.mvc.server.exception.PPPServiceExecuteMethodRepeatException;
@@ -41,5 +44,14 @@ public class ServerServiceRegisterPostProcessor implements PPPServerPostProcesso
 			}
 			PPPContext.addBean(entity.getName(), clazz);
 		}
+		
+		
+		JdbcTemplate jdbc = (JdbcTemplate)PPPContext.getBean("jdbc");
+		DriverManagerDataSource ds = (DriverManagerDataSource)jdbc.getDataSource();
+		ds.setDriverClassName("com.mysql.jdbc.Driver");
+		ds.setUrl(PPPContext.properties("database.jdbc.loaction"));
+		ds.setUsername(PPPContext.properties("database.jdbc.username"));
+		ds.setPassword(PPPContext.properties("database.jdbc.password"));
+		jdbc.setDataSource(ds);
 	}
 }

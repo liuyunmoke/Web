@@ -66,23 +66,10 @@ public class BaseBeansConfig {
 
 	
 	/**
-	 * 默认数据源,使用Mysql.
-	 */
-	@Bean
-	public DriverManagerDataSource dataSource(){
-		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl(PPPContext.properties("database.jdbc.loaction"));
-		ds.setUsername(PPPContext.properties("database.jdbc.username"));
-		ds.setPassword(PPPContext.properties("database.jdbc.password"));
-		return ds;
-	}
-	
-	/**
 	 * JDBC-Temple.
 	 */
 	@Bean
-	public JdbcTemplate jdbcTemplate(){
-		return new JdbcTemplate();
+	public JdbcTemplate jdbc(){
+		return new JdbcTemplate(new DriverManagerDataSource());
 	}
 }
