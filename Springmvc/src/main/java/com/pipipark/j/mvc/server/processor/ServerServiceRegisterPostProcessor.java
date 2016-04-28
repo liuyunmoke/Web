@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.pipipark.j.mvc.PPPServerPostProcessor;
-import com.pipipark.j.mvc.core.PPPSpringContext;
-import com.pipipark.j.mvc.core.PPPSpringmvcConstant;
+import com.pipipark.j.mvc.core.PPPContext;
 import com.pipipark.j.mvc.server.exception.PPPServiceExecuteMethodRepeatException;
 import com.pipipark.j.mvc.server.scaner.PPPServiceScaner;
 import com.pipipark.j.system.annotation.PPPIndex;
@@ -36,11 +35,11 @@ public class ServerServiceRegisterPostProcessor implements PPPServerPostProcesso
 			Method[] ms = clazz.getDeclaredMethods();
 			Set<String> set = new LinkedHashSet<String>();
 			for (Method method : ms) {
-				if(PPPSpringmvcConstant.EXECUTE_METHOD.equals(method.getName()) && !set.add(method.getName())){
+				if(PPPContext.EXECUTE_METHOD.equals(method.getName()) && !set.add(method.getName())){
 					throw new PPPServiceExecuteMethodRepeatException();
 				}
 			}
-			PPPSpringContext.addBean(entity.getName(), clazz);
+			PPPContext.addBean(entity.getName(), clazz);
 		}
 	}
 }

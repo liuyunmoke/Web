@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pipipark.j.mvc.core.PPPResonpse;
-import com.pipipark.j.mvc.core.PPPSpringContext;
-import com.pipipark.j.mvc.core.PPPSpringmvcConstant;
+import com.pipipark.j.mvc.core.PPPContext;
 import com.pipipark.j.system.core.PPPLogger;
 import com.pipipark.j.system.core.PPPVersion;
 
@@ -20,10 +19,10 @@ public class DefaultSpringMvcServiceHandler extends AbsSpringMvcServiceHandler {
 		Object service = this.getService(serviceName);
 		Object returnObject = null;
 		if(service==null){
-			service = PPPSpringContext.getBean(serviceName);
+			service = PPPContext.getBean(serviceName);
 		}
 		for (Method method : service.getClass().getDeclaredMethods()) {
-			if(method.getName().equals(PPPSpringmvcConstant.EXECUTE_METHOD)){
+			if(method.getName().equals(PPPContext.EXECUTE_METHOD)){
 				try {
 					returnObject = method.invoke(service);
 					break;

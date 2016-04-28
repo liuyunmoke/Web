@@ -1,7 +1,10 @@
 package com.pipipark.j.mvc.core;
 
+import java.util.Properties;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +20,32 @@ import com.pipipark.j.system.core.PPPString;
  * @author pipipark:cwj
  */
 @SuppressWarnings("serial")
-public class PPPSpringContext implements ApplicationContextAware,IPPPark {
+public class PPPContext implements ApplicationContextAware,IPPPark {
+	
+	private static Properties properties;
+	
+	/**
+	 * mvc服务类默认(约定)执行的方法名.
+	 */
+	public static final String EXECUTE_METHOD="execute";
+	
+	@Value("#{properties}")
+	public void setProperties(Properties p){
+		properties = p;
+	}
+	
+	/**
+	 * 获取properties属性值
+	 * @param key
+	 * @return value
+	 */
+	public static String properties(String key){
+		Object val = properties.get(key);
+		if(val!=null){
+			return val.toString();
+		}
+		return null;
+	}
 	
 	private static ApplicationContext _applicationContext;
 	/**
@@ -34,7 +62,7 @@ public class PPPSpringContext implements ApplicationContextAware,IPPPark {
 	/**
 	 * @return ApplicationContext
 	 */
-	public static ApplicationContext getApplicationContext() {
+	public static ApplicationContext applicationContext() {
 		return _applicationContext;
 	}
 

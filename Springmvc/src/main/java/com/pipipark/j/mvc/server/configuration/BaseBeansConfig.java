@@ -1,32 +1,88 @@
 package com.pipipark.j.mvc.server.configuration;
 
+import java.io.IOException;
+
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.pipipark.j.mvc.core.PPPSpringContext;
+import com.pipipark.j.mvc.core.PPPContext;
 import com.pipipark.j.mvc.server.processor.BeanAfterInitProcessor;
 import com.pipipark.j.mvc.server.processor.BeanBeforeInitProcessor;
+import com.pipipark.j.system.core.PPPConstant;
 
 /***
  * Bean注入配置.
+ * 
  * @author pipipark:cwj
  */
 @Configuration
 public class BaseBeansConfig {
-	
+
+	/**
+	 * 上下文应用工具 
+	 */
 	@Bean
-	public PPPSpringContext springContext(){
-		return new PPPSpringContext();
+	public PPPContext springContext() {
+		return new PPPContext();
 	}
-	
+
+	/**
+	 * Bean初始化前置功能
+	 */
 	@Bean
-	public BeanBeforeInitProcessor beanBeforeInitProcessor(){
+	public BeanBeforeInitProcessor beanBeforeInitProcessor() {
 		return new BeanBeforeInitProcessor();
 	}
-	
+	/**
+	 * Bean初始化后置功能
+	 */
 	@Bean
-	public BeanAfterInitProcessor beanAfterInitProcessor(){
+	public BeanAfterInitProcessor beanAfterInitProcessor() {
 		return new BeanAfterInitProcessor();
 	}
 
+	/**
+	 * 资源文件Bean
+	 */
+	@Bean
+	public PropertiesFactoryBean properties() throws IOException {
+		PropertiesFactoryBean p = new PropertiesFactoryBean();
+		ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+		Resource[] resources;
+		resources = resolver.getResources("classpath*:**/*.properties");
+		if (resources == null) {
+			throw new IOException("class path resource no found.");
+		}
+		p.setLocations(resources);
+		p.setFileEncoding(PPPConstant.Systems.DEFAULT_CHARSET);
+		return p;
+	}
+
+	
+	/**
+	 * 默认数据源,使用Mysql.
+	 */
+	@Bean
+	public DriverManagerDataSource dataSource(){
+		DriverManagerDataSource ds = new DriverManagerDataSource();
+		ds.setDriverClassName("com.mysql.jdbc.Driver");
+		ds.setUrl(PPPContext.properties("database.jdbc.loaction"));
+		ds.setUsername(PPPContext.properties("database.jdbc.username"));
+		ds.setPassword(PPPContext.properties("database.jdbc.password"));
+		return ds;
+	}
+	
+	/**
+	 * JDBC-Temple.
+	 */
+	@Bean
+	public JdbcTemplate jdbcTemplate(){
+		return new JdbcTemplate();
+	}
 }
