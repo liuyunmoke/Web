@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -63,13 +64,12 @@ public class BaseBeansConfig {
 		p.setFileEncoding(PPPConstant.Systems.DEFAULT_CHARSET);
 		return p;
 	}
-
 	
-	/**
-	 * JDBC-Temple.
-	 */
-	@Bean
-	public JdbcTemplate jdbc(){
-		return new JdbcTemplate(new DriverManagerDataSource());
-	}
+	@Bean  
+    public PropertySourcesPlaceholderConfigurer placehodlerConfigurer() throws IOException {
+		PropertySourcesPlaceholderConfigurer c = new PropertySourcesPlaceholderConfigurer();
+		c.setProperties(properties().getObject());
+        return c;
+    }
+	
 }

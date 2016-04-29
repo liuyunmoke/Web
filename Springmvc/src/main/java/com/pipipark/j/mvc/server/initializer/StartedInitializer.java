@@ -23,7 +23,7 @@ public class StartedInitializer implements WebApplicationInitializer,PPPMvcIniti
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		PPPLogger.systemInfo("Server initializer start");
 		//启动
-		PPPScan.scaner(PPPMvcInitializer.BASE_PACKAGE);
+		PPPScan.scaner(PPPMvcInitializer.BASE_PACKAGE,"com.iwop");
 	}
 
 }

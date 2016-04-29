@@ -41,7 +41,7 @@ public final class SpringMvcControllerHandler extends PPPEntity implements
 
 	@RequestMapping("/service/{name}")
 	public PPPResonpse service(@PathVariable("name") String serviceName,
-			HttpServletRequest req, HttpServletResponse res) {
+			HttpServletRequest req, HttpServletResponse res) throws Exception {
 		res.setContentType("application/json;charset=utf-8");
 		res.setHeader("Cache-Control", "no-cache");
 

@@ -47,11 +47,10 @@ public class ServerServiceRegisterPostProcessor implements PPPServerPostProcesso
 		
 		
 		JdbcTemplate jdbc = (JdbcTemplate)PPPContext.getBean("jdbc");
-		DriverManagerDataSource ds = (DriverManagerDataSource)jdbc.getDataSource();
-		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl(PPPContext.properties("database.jdbc.loaction"));
-		ds.setUsername(PPPContext.properties("database.jdbc.username"));
-		ds.setPassword(PPPContext.properties("database.jdbc.password"));
-		jdbc.setDataSource(ds);
+//		DriverManagerDataSource ds = (DriverManagerDataSource)jdbc.getDataSource();
+//		ds.setDriverClassName("com.mysql.jdbc.Driver");
+//		ds.setUrl(PPPContext.properties("jdbc.location"));
+//		ds.setUsername(PPPContext.properties("jdbc.username"));
+//		ds.setPassword(PPPContext.properties("jdbc.password"));
 	}
 }

@@ -34,7 +34,7 @@ import com.pipipark.j.system.core.PPPConstant;
 @Configuration
 @PPPExclude
 @EnableWebMvc
-@ComponentScan(basePackages = PPPMvcInitializer.BASE_PACKAGE)
+@ComponentScan(basePackages = {"com"})
 public class DispatchServletConfig extends WebMvcConfigurationSupport {
 
 	/**
@@ -124,7 +124,6 @@ public class DispatchServletConfig extends WebMvcConfigurationSupport {
 	@Override  
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resource/**").addResourceLocations("/WEB-INF/resource/");
-        registry.addResourceHandler("/manager/function/**").addResourceLocations("/WEB-INF/back/function/");
-        registry.addResourceHandler("/function/**").addResourceLocations("/WEB-INF/front/function/");
+        registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/html/");
     }
 }

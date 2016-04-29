@@ -17,7 +17,7 @@ public abstract class AbsSpringMvcServiceHandler extends PPPEntity implements IP
 
 	private Map<String, Object> services;
 	
-	public abstract PPPResonpse access(final String serviceName, final PPPVersion ver, HttpServletRequest request, HttpServletResponse response);
+	public abstract PPPResonpse access(final String serviceName, final PPPVersion ver, HttpServletRequest request, HttpServletResponse response)  throws Exception ;
 
 	public void setService(Map<String, Object> services) {
 		this.services = services;
