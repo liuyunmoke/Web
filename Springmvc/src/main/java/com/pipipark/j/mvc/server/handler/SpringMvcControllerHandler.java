@@ -94,7 +94,7 @@ public final class SpringMvcControllerHandler extends PPPEntity implements
 		return serviceHandler.access(serviceName, version, req, res);
 	}
 
-	@RequestMapping("/{entity}/{method}")
+//	@RequestMapping("/{entity}/{method}")
 	public String entity(@PathVariable("name") String serviceName,
 			HttpServletRequest request, HttpServletResponse response) {
 		String path = request.getServletPath();

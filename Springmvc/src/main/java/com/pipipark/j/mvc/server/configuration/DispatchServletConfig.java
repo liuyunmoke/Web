@@ -121,9 +121,9 @@ public class DispatchServletConfig extends WebMvcConfigurationSupport {
     public HandlerMapping resourceHandlerMapping() {
         return super.resourceHandlerMapping();  
     }
-	@Override  
+	@Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resource/**").addResourceLocations("/WEB-INF/resource/");
-        registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/html/");
+        registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/html");
     }
 }

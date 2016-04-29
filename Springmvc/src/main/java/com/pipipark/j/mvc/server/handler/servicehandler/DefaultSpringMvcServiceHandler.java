@@ -44,10 +44,7 @@ public class DefaultSpringMvcServiceHandler extends AbsSpringMvcServiceHandler {
 						.invoke(service);
 				service = target.getTarget();
 			}
-		} catch (NoSuchMethodException | SecurityException
-				| IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			PPPLogger.error("Your service method no found.", e);
+		} catch (Exception e) {
 		}
 
 		Method serviceMethod=null;
