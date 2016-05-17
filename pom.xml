@@ -20,6 +20,48 @@
 			<artifactId>Spring</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.pipipark.j</groupId>
+			<artifactId>Database</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.pipipark.j</groupId>
+			<artifactId>Randoms</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.pipipark.j</groupId>
+			<artifactId>Sms</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.pipipark.j</groupId>
+			<artifactId>Jpush</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.pipipark.j</groupId>
+			<artifactId>Email</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.pipipark.j</groupId>
+			<artifactId>Windows</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.pipipark.j</groupId>
+			<artifactId>Netty</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 		<!-- servlet -->
 		<dependency>
